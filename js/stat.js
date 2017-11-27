@@ -2,15 +2,15 @@
 
 (function () {
 
-  var start;
   var widthColumnHistogram = 40;
-  var heightHistogramme = 150;
+  var heightHistogram = 150;
   var leftPoint = 120;
   var topPoint = 100;
   var bottomWhiteRect = 270;
+  var textColor = '#333333';
 
 
-  function drawBasicRectangles(ctx, bottomWhiteRect) {
+  function drawBackground(ctx, bottomWhiteRect) {
 
    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
    ctx.fillRect(110, 20, 420, 270);
@@ -19,10 +19,10 @@
 
  }
 
- function renderBasicText(ctx, beginningLine) {
+ function drawCongratulationsText(ctx, beginningLine) {
 
-  ctx.fillStyle = '#333333';
-  ctx.strokeStyle = '#333333';
+  ctx.fillStyle = textColor;
+  ctx.strokeStyle = textColor;
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура, вы победили!', beginningLine, 50);
   ctx.fillText('Список результатов:', beginningLine, 70);
@@ -31,19 +31,17 @@
 
 function drawHistogram(ctx, times, names) {
 
-  var max;
+
   var indentColumn = 50;
   var currentUserColor = 'rgba(255, 0, 0, 1)';
+  var maxTimeValue = Math.max.apply(Math, times);
 
-  max = Math.max.apply(Math, times);
-
-  heightHistogramme -= topPoint;
+  heightHistogram -= topPoint;
 
   for (var i = 0; i <= names.length - 1; i++) {
 
-    var top = heightHistogramme - Math.round(heightHistogramme * (Math.round(times[i]) / max));
-
-    start = i === 0 ? 0 : i * (widthColumnHistogram + indentColumn);
+    var top = heightHistogram - Math.round(heightHistogram * (Math.round(times[i]) / maxTimeValue));
+    var start = i === 0 ? 0 : i * (widthColumnHistogram + indentColumn);
 
     if (names[i] === 'Вы') {
       ctx.fillStyle = currentUserColor;
@@ -51,24 +49,24 @@ function drawHistogram(ctx, times, names) {
       ctx.fillStyle = ('rgba(0, 0, 255, ' + Math.random() + ')');
     }
 
-    ctx.fillRect(start + leftPoint, top + topPoint, widthColumnHistogram, heightHistogramme - top + topPoint);
+    ctx.fillRect(start + leftPoint, top + topPoint, widthColumnHistogram, heightHistogram - top + topPoint);
 
-    drawNames(ctx, names[i]);
+    drawName(ctx, names[i], start);
   }
 
 }
 
-function drawNames(ctx, names) {
+function drawName(ctx, names, start) {
 
-  ctx.fillStyle = '#333333';
+  ctx.fillStyle = textColor;
   ctx.fillText(names, start + leftPoint, bottomWhiteRect);
 
 }
 
 window.renderStatistics = function(ctx, names, times) {
 
-  drawBasicRectangles(ctx, bottomWhiteRect);
-  renderBasicText(ctx, leftPoint);
+  drawBackground(ctx, bottomWhiteRect);
+  drawCongratulationsText(ctx, leftPoint);
   drawHistogram(ctx, times, names);
 
 };
