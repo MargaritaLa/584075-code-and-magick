@@ -2,10 +2,6 @@
 
 (function () {
 
-  function drawingHistograms() {
-
-  }
-
   function renderBasicText(ctx, beginningLine) {
     ctx.fillStyle = '#333333';
     ctx.strokeStyle = '#333333';
