@@ -90,73 +90,73 @@
 	</div>
 
 
-	<div class="setup-artifacts-shop">
-		<div class="setup-artifacts-cell"><img src="img/icon-star.png" alt="Star" width="65" height="50" draggable="true">
-		</div>
-		<div class="setup-artifacts-cell"></div>
-		<div class="setup-artifacts-cell"></div>
-		<div class="setup-artifacts-cell"></div>
+  <div class="setup-artifacts-shop">
+    <div class="setup-artifacts-cell"><img src="img/icon-star.png" alt="Star" width="65" height="50" draggable="true">
+    </div>
+    <div class="setup-artifacts-cell"></div>
+    <div class="setup-artifacts-cell"></div>
+    <div class="setup-artifacts-cell"></div>
 
-		<div class="setup-artifacts-cell"></div>
-		<div class="setup-artifacts-cell"></div>
-		<div class="setup-artifacts-cell"></div>
-		<div class="setup-artifacts-cell"></div>
-	</div>
+    <div class="setup-artifacts-cell"></div>
+    <div class="setup-artifacts-cell"></div>
+    <div class="setup-artifacts-cell"></div>
+    <div class="setup-artifacts-cell"></div>
+  </div>
 
-	<div class="setup-player">
-		<div class="setup-wizard-appearance">
-			<div class="setup-wizard-wrap">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-wizard">
-					<g class="wizard">
-						<use xlink:href="#wizard-coat" class="wizard-coat" style="fill: #6589a4"></use>
-						<use xlink:href="#wizard-head" class="wizard-head"></use>
-						<use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
-						<use xlink:href="#wizard-hands" class="wizard-hands"></use>
-					</g>
-				</svg>
-			</div>
-			<input type="hidden" name="coat-color" value="rgb(101, 137, 164)">
-			<input type="hidden" name="eyes-color" value="black">
-		</div>
+  <div class="setup-player">
+    <div class="setup-wizard-appearance">
+     <div class="setup-wizard-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-wizard">
+       <g class="wizard">
+        <use xlink:href="#wizard-coat" class="wizard-coat" style="fill: #6589a4"></use>
+        <use xlink:href="#wizard-head" class="wizard-head"></use>
+        <use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
+        <use xlink:href="#wizard-hands" class="wizard-hands"></use>
+      </g>
+    </svg>
+  </div>
+  <input type="hidden" name="coat-color" value="rgb(101, 137, 164)">
+  <input type="hidden" name="eyes-color" value="black">
+</div>
 
-		<div class="setup-fireball-wrap">
-			<div class="setup-fireball"></div>
-			<input type="hidden" name="fireball-color" value="#ee4830">
-		</div>
+<div class="setup-fireball-wrap">
+ <div class="setup-fireball"></div>
+ <input type="hidden" name="fireball-color" value="#ee4830">
+</div>
 
-		<div class="setup-artifacts" dropzone="move">
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
+<div class="setup-artifacts" dropzone="move">
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
 
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
 
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
 
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-			<div class="setup-artifacts-cell"></div>
-		</div>
-	</div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+ <div class="setup-artifacts-cell"></div>
+</div>
+</div>
 
-	<div class="setup-footer">
-		<div class="setup-similar hidden">
+<div class="setup-footer">
+  <div class="setup-similar hidden">
 
-			<h4 class="setup-similar-title">Похожие персонажи</h4>
+   <h4 class="setup-similar-title">Похожие персонажи</h4>
 
-			<div class="setup-similar-list"><!--Список похожих персонажей--></div>
-		</div>
+   <div class="setup-similar-list"><!--Список похожих персонажей--></div>
+ </div>
 
-		<button class="button setup-submit">Сохранить</button>
-	</div>
+ <button class="button setup-submit">Сохранить</button>
+</div>
 </form>
 </div>
 
@@ -184,12 +184,12 @@
 
 		'use strict'
 
-		var fireballSize = 22;		
+		var fireballSize = 22;
 		var wizardSpeed = 3;
 		var wizardWidth = 70;
 		var getFireballSpeed = function(left) {
-			return left ? 5 : 2;			
-		}	
+			return left ? 5 : 2;
+		}
 		var getWizardHeight = function(wizardWidth) {
 			return 1.337 * wizardWidth;
 		}
@@ -201,7 +201,7 @@
 
 		function getWizardY(height) {
 			return (height / 3) - wizardHeight / 2;
-		}		
+		}
 
 
 		var wizardHeight = getWizardHeight(wizardWidth);
@@ -209,9 +209,10 @@
 		getWizardHeight(wizardWidth);
 
 		getFireballSpeed(false);
-		
+
 	</script>
-	<script src="js/game.js"></script>
+  <script src="js/stat.js"></script>
+  <script src="js/game.js"></script>
 
 </body>
 </html>
