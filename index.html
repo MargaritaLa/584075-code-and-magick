@@ -62,8 +62,8 @@
 
 	<div class="demo"></div>
 
-	<div class="setup-open">
-		<img src="./img/user-1.jpg" class="setup-open-icon">
+	<div class="setup-open" id="id_of_textbox">
+		<img src="./img/user-1.jpg" class="setup-open-icon"  tabindex="0">
 	</div>
 </header>
 
@@ -71,52 +71,52 @@
 	<form class="setup-wizard-form"
 	method="post"
 	enctype="multipart/form-data"
-	autocomplete="off">
+	autocomplete="off"
+  action="https://js.dump.academy/code-and-magick">
 
-	<div class="setup-title">
-		<div class="setup-user">
-			<div class="upload">
-				<img class="setup-user-pic" src="./img/user-1.jpg"/>
-				<input type="file" name="avatar">
-			</div>
-			<label>
-				<input type="text" name="username"
-				maxlength="25" required
-				class="setup-user-name" value="Синий Пендальф"/>
-			</label>
-		</div>
-
-		<span class="setup-close">&times;</span>
-	</div>
-
-
-  <div class="setup-artifacts-shop">
-    <div class="setup-artifacts-cell"><img src="img/icon-star.png" alt="Star" width="65" height="50" draggable="true">
+  <div class="setup-title">
+    <div class="setup-user">
+     <div class="upload">
+      <img class="setup-user-pic" src="./img/user-1.jpg"/>
+      <input type="file" name="avatar">
     </div>
-    <div class="setup-artifacts-cell"></div>
-    <div class="setup-artifacts-cell"></div>
-    <div class="setup-artifacts-cell"></div>
-
-    <div class="setup-artifacts-cell"></div>
-    <div class="setup-artifacts-cell"></div>
-    <div class="setup-artifacts-cell"></div>
-    <div class="setup-artifacts-cell"></div>
+    <label>
+      <input type="text" name="username"  minlength="2"
+      maxlength="25" required
+      class="setup-user-name" value="Синий Пендальф"/>
+    </label>
   </div>
+  <span class="setup-close"  tabindex="0">&times;</span>
+</div>
 
-  <div class="setup-player">
-    <div class="setup-wizard-appearance">
-     <div class="setup-wizard-wrap">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-wizard">
-       <g class="wizard">
-        <use xlink:href="#wizard-coat" class="wizard-coat" style="fill: #6589a4"></use>
-        <use xlink:href="#wizard-head" class="wizard-head"></use>
-        <use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
-        <use xlink:href="#wizard-hands" class="wizard-hands"></use>
-      </g>
-    </svg>
+
+<div class="setup-artifacts-shop">
+  <div class="setup-artifacts-cell"><img src="img/icon-star.png" alt="Star" width="65" height="50" draggable="true">
   </div>
-  <input type="hidden" name="coat-color" value="rgb(101, 137, 164)">
-  <input type="hidden" name="eyes-color" value="black">
+  <div class="setup-artifacts-cell"></div>
+  <div class="setup-artifacts-cell"></div>
+  <div class="setup-artifacts-cell"></div>
+
+  <div class="setup-artifacts-cell"></div>
+  <div class="setup-artifacts-cell"></div>
+  <div class="setup-artifacts-cell"></div>
+  <div class="setup-artifacts-cell"></div>
+</div>
+
+<div class="setup-player">
+  <div class="setup-wizard-appearance">
+   <div class="setup-wizard-wrap">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-wizard">
+     <g class="wizard">
+      <use xlink:href="#wizard-coat" class="wizard-coat" style="fill: #6589a4"></use>
+      <use xlink:href="#wizard-head" class="wizard-head"></use>
+      <use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
+      <use xlink:href="#wizard-hands" class="wizard-hands"></use>
+    </g>
+  </svg>
+</div>
+<input type="hidden" name="coat-color" value="rgb(101, 137, 164)">
+<input type="hidden" name="eyes-color" value="black">
 </div>
 
 <div class="setup-fireball-wrap">
