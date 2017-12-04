@@ -6,16 +6,11 @@
   var ENTER_KEYCODE = 13;
   var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-
-  var wizardCoatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  var wizardEyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
-
-  // перемешиваем массивы цветов для глаз и плащей
-  wizardCoatColors = wizardCoatColors.sort(compareRandom);
-  wizardEyesColors = wizardEyesColors.sort(compareRandom);
-
+  var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+  var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
   var WIZARDS_COUNT = 4;
-  var allWizards = createWizardsArray(WIZARDS_COUNT, WIZARD_NAMES, WIZARD_SURNAMES, wizardCoatColors, wizardEyesColors);
+
+  var allWizards = createWizardsArray(WIZARDS_COUNT, WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COAT_COLORS, WIZARD_EYES_COLORS);
 
   var setupWizardWindow = document.querySelector('.setup');
   var setupOpenWizardWindow = document.querySelector('.setup-open');
@@ -41,14 +36,16 @@
   function createWizardsArray(wizardsCount, wizardsNames, wizardsSurnames, operationWizardCoatColors, operationWizardEyesColors) {
 
     var wizardsArray = [];
+    var wizardCoatColors = operationWizardCoatColors.slice().sort(compareRandom);
+    var wizardEyesColors = operationWizardEyesColors.slice().sort(compareRandom);
 
     for (var i = 0; i < wizardsCount; i++) {
 
       var wizard = {
         name: wizardsNames[getRandomValue(wizardsNames.length - 1)],
         surname: wizardsSurnames[getRandomValue(wizardsSurnames.length - 1)],
-        coatColor: operationWizardCoatColors[i],
-        eyesColor: operationWizardEyesColors[i]
+        coatColor: wizardCoatColors[i],
+        eyesColor: wizardEyesColors[i]
       };
 
       wizardsArray.push(wizard);
