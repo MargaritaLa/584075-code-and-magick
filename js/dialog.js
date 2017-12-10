@@ -33,6 +33,7 @@
   window.openPopup = function () {
     setupWizardWindow.classList.remove('hidden');
     document.addEventListener('keydown', window.onPopupEscPress);
+
   };
 
   window.closePopup = function () {
@@ -40,6 +41,7 @@
     if (focused !== document.querySelector('.setup-user-name')) {
       setupWizardWindow.classList.add('hidden');
       document.removeEventListener('keydown', window.onPopupEscPress);
+      setupWizardWindow.style.cssText = '';
     }
   };
 
@@ -49,6 +51,47 @@
     }
   };
 
+  var dialogHandle = setupWizardWindow.querySelector('.upload');
+
+  dialogHandle.addEventListener('mousedown', function (evt) {
+    evt.preventDefault();
+
+    var startCoords = {
+      x: evt.clientX,
+      y: evt.clientY
+    };
+
+    var onMouseMove = function (moveEvt) {
+      moveEvt.preventDefault();
+
+      var shift = {
+        x: startCoords.x - moveEvt.clientX,
+        y: startCoords.y - moveEvt.clientY
+      };
+
+      startCoords = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      };
+
+      setupWizardWindow.style.top = (setupWizardWindow.offsetTop - shift.y) + 'px';
+      setupWizardWindow.style.left = (setupWizardWindow.offsetLeft - shift.x) + 'px';
+    };
+
+    var onMouseUp = function (upEvt) {
+      upEvt.preventDefault();
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+
+  });
+
+  dialogHandle.addEventListener('click', function (evt) {
+    evt.preventDefault();
+  });
 
 })();
 
