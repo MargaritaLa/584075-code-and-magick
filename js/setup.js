@@ -31,27 +31,6 @@
   // выводим всех волшебников в блок формы настройки волшебника
   similarWizardListWindow.appendChild(wizardsFragment);
 
-  function colorizeFireball(clickedElement, color) {
-    clickedElement.style.fill = color;
-  }
-
-  function colorizeNotFireball(clickedElement, color) {
-    clickedElement.closest('.setup-fireball-wrap').style.background = color;
-  }
-
-  window.wizardElementClicked = function (clickedElement) {
-
-    var colorizeElementFunction;
-
-    if (!clickedElement.classList.contains('setup-fireball')) {
-      colorizeElementFunction = colorizeFireball;
-    } else {
-      colorizeElementFunction = colorizeNotFireball;
-    }
-
-    window.colorizeElement(clickedElement, colorizeElementFunction);
-  };
-
   // создаем массив объектов "Волшебник"
   function createWizardsArray(wizardsCount, wizardsNames, wizardsSurnames, operationWizardCoatColors, operationWizardEyesColors) {
 
@@ -139,5 +118,49 @@
     evt.target.style.outline = '';
     evt.preventDefault();
   });
+
+  /* часть функционала перекрашивания по клику элементов волшебника */
+  /* переменные для заполнения формы */
+  var inputValueCoat = document.querySelector('[name = "coat-color"]');
+  var inputValueEyes = document.querySelector('[name = "eyes-color"]');
+  var inputValueFireball = document.querySelector('[name = "fireball-color"]');
+
+  function fillForm(clickedElement, color) {
+    switch (clickedElement.getAttribute('class')) {
+      case 'wizard-coat':
+        inputValueCoat.value = color;
+        break;
+      case 'wizard-eyes':
+        inputValueEyes.value = color;
+        break;
+      case 'setup-fireball':
+        inputValueFireball.value = color;
+        break;
+    }
+
+  }
+
+  function colorizeFireball(clickedElement, color) {
+    clickedElement.style.fill = color;
+  }
+
+  function colorizeNotFireball(clickedElement, color) {
+    clickedElement.closest('.setup-fireball-wrap').style.background = color;
+  }
+
+  window.wizardElementClicked = function (clickedElement) {
+
+    var colorizeElementFunction;
+
+    if (!clickedElement.classList.contains('setup-fireball')) {
+      colorizeElementFunction = colorizeFireball;
+    } else {
+      colorizeElementFunction = colorizeNotFireball;
+    }
+
+    window.colorizeElement(clickedElement, colorizeElementFunction);
+    window.colorizeElement(clickedElement, fillForm);
+
+  };
 
 })();
