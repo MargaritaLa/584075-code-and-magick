@@ -22,9 +22,7 @@
   var draggedItem = null;
   var artifactsElement = document.querySelector('.setup-artifacts');
 
-
   // показываем блок формы настройки волшебника и блок выбора волшебника соответсвенно
-  // setupWizardWindow.classList.remove('hidden');
   setupSimilarWizardWindow.classList.remove('hidden');
 
   // отображаем волшебников во фрагменте
@@ -32,6 +30,27 @@
 
   // выводим всех волшебников в блок формы настройки волшебника
   similarWizardListWindow.appendChild(wizardsFragment);
+
+  function colorizeFireball(clickedElement, color) {
+    clickedElement.style.fill = color;
+  }
+
+  function colorizeNotFireball(clickedElement, color) {
+    clickedElement.closest('.setup-fireball-wrap').style.background = color;
+  }
+
+  window.wizardElementClicked = function (clickedElement) {
+
+    var colorizeElementFunction;
+
+    if (!clickedElement.classList.contains('setup-fireball')) {
+      colorizeElementFunction = colorizeFireball;
+    } else {
+      colorizeElementFunction = colorizeNotFireball;
+    }
+
+    window.colorizeElement(clickedElement, colorizeElementFunction);
+  };
 
   // создаем массив объектов "Волшебник"
   function createWizardsArray(wizardsCount, wizardsNames, wizardsSurnames, operationWizardCoatColors, operationWizardEyesColors) {

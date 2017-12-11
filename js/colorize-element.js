@@ -3,8 +3,6 @@
 (function () {
   // переменные для функций изменения вида волшебника
   var intoFocusFieldWizard = document.querySelector('.setup-player');
-  var intoFocusWizard = document.querySelector('.setup-wizard-wrap');
-  var intoFocusFireballWizard = document.querySelector('.setup-fireball-wrap');
   var inputValueCoat = document.querySelector('[name = "coat-color"]');
   var inputValueEyes = document.querySelector('[name = "eyes-color"]');
   var inputValueFireball = document.querySelector('[name = "fireball-color"]');
@@ -15,41 +13,41 @@
   // функции изменения вида волшебника
   intoFocusFieldWizard.addEventListener('click', function (e) {
     e.stopPropagation();
+    var clickedElement = e.target;
 
-    var getClass = e.target.getAttribute('class');
+    // оповещение о выбранном цвете и элементе
+    window.wizardElementClicked(clickedElement);
+
+  }, false);
+
+  window.colorizeElement = function(clickedElement, colorizeElementFunction) {
+
+    var colorsArray;
+    var getClass = clickedElement.getAttribute('class');
 
     switch(getClass) {
       case 'wizard-coat':
-      chooseRandomColor(e.target, changeCoatColors, inputValueCoat);
+      colorsArray = changeCoatColors;
       break;
       case 'wizard-eyes':
-      chooseRandomColor(e.target, changeEyesColors, inputValueEyes);
+      colorsArray = changeEyesColors;
       break;
       case 'setup-fireball':
-      chooseRandomColor(e.target, changeFireballColors, inputValueFireball);
+      colorsArray = changeFireballColors;
       break;
       default:
       console.log('клик вне волшебника');
+      return;
     }
-  }, false);
 
-  function chooseRandomColor(repaintElement, colorsArray, inputElement) {
+ // выбор рандомного цвета
+ var color = colorsArray[window.mathUtils.getZeroMaxRandomValue(0, colorsArray.length - 1)];
 
-    var color = colorsArray[window.mathUtils.getZeroMaxRandomValue(0, colorsArray.length - 1)];
-    inputElement.value = color;
-    colorizeElement(repaintElement, color);
+ if (typeof colorizeElementFunction === 'function') {
+  colorizeElementFunction(clickedElement, color);
+}
 
-  }
-
-  function colorizeElement(processedElement, colorFill) {
-
-    if(!processedElement.classList.contains('setup-fireball')){
-      processedElement.style.fill = colorFill;
-    } else{
-     processedElement.style.background = colorFill;
-   }
-
- }
+}
 
 })();
 
