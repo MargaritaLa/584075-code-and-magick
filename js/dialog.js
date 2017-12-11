@@ -8,6 +8,7 @@
   var setupOpenWizardWindow = document.querySelector('.setup-open');
   var setupCloseWizardWindow = setupWizardWindow.querySelector('.setup-close');
 
+
   // функции обработки событий
 
   setupOpenWizardWindow.addEventListener('click', function () {
