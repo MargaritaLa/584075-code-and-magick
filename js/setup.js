@@ -17,16 +17,6 @@
   var wizardsFragment = document.createDocumentFragment();
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
-  // переменные для функций изменения вида волшебника
-  var intoFocusWizard = document.querySelector('.setup-wizard-wrap');
-  var intoFocusFireballWizard = document.querySelector('.setup-fireball-wrap');
-  var inputValueCoat = document.querySelector('[name = "coat-color"]');
-  var inputValueEyes = document.querySelector('[name = "eyes-color"]');
-  var inputValueFireball = document.querySelector('[name = "fireball-color"]');
-  var changeCoatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  var changeEyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
-  var changeFireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
-
   // переменные для релизации функций магазина
   var shopElement = document.querySelector('.setup-artifacts-shop');
   var draggedItem = null;
@@ -83,31 +73,6 @@
 
     return wizardNode;
   }
-
-  // функции изменения вида волшебника
-  intoFocusWizard.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (e.target.classList.contains('wizard-coat')) {
-      var colorCoat = changeCoatColors[window.mathUtils.getZeroMaxRandomValue(0, changeCoatColors.length - 1)];
-      e.target.style.fill = colorCoat;
-      inputValueCoat.value = colorCoat;
-    }
-
-    if (e.target.classList.contains('wizard-eyes')) {
-      var colorEyes = changeEyesColors[window.mathUtils.getZeroMaxRandomValue(0, changeEyesColors.length - 1)];
-      e.target.style.fill = colorEyes;
-      inputValueEyes.value = colorEyes;
-    }
-  }, false);
-
-  intoFocusFireballWizard.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (e.target.classList.contains('setup-fireball')) {
-      var color = changeFireballColors[window.mathUtils.getZeroMaxRandomValue(0, changeFireballColors.length - 1)];
-      e.target.parentElement.style.background = color;
-      inputValueFireball.value = color;
-    }
-  }, true);
 
   /* функции для работы магазина */
 
