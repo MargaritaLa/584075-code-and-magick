@@ -37,11 +37,18 @@
 
     var color = colorsArray[window.mathUtils.getZeroMaxRandomValue(0, colorsArray.length - 1)];
     inputElement.value = color;
-    if(!repaintElement.classList.contains('setup-fireball')){
-      repaintElement.style.fill = color;
+    colorizeElement(repaintElement, color);
+
+  }
+
+  function colorizeElement(processedElement, colorFill) {
+
+    if(!processedElement.classList.contains('setup-fireball')){
+      processedElement.style.fill = colorFill;
     } else{
-     e.target.parentElement.style.background = color;
+     processedElement.style.background = colorFill;
    }
+
  }
 
 })();
