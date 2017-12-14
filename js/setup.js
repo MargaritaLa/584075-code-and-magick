@@ -25,12 +25,6 @@
   // показываем блок формы настройки волшебника и блок выбора волшебника соответсвенно
   setupSimilarWizardWindow.classList.remove('hidden');
 
-  // отображаем волшебников во фрагменте
-  renderWizards(wizardsFragment, allWizards);
-
-  // выводим всех волшебников в блок формы настройки волшебника
-  similarWizardListWindow.appendChild(wizardsFragment);
-
   // создаем массив объектов "Волшебник"
   function createWizardsArray(wizardsCount, wizardsNames, wizardsSurnames, operationWizardCoatColors, operationWizardEyesColors) {
 
@@ -54,20 +48,17 @@
   }
 
   // выводим всех волшебников в блок формы настройки волшебника
-  function renderWizards(operationWizardsFragment, operationAllWizards) {
-    for (var i = 0; i <= operationAllWizards.length - 1; i++) {
-      operationWizardsFragment.appendChild(renderWizard(operationAllWizards[i]));
-    }
+  function renderWizard(operationWizardsFragment, operationAllWizards) {
+    operationWizardsFragment.appendChild(renderWizardNode(operationAllWizards));
   }
 
   // функция вывода волшебника в верстку
-  function renderWizard(wizard) {
-
+  function renderWizardNode(wizard) {
     var wizardNode = similarWizardTemplate.cloneNode(true);
 
-    wizardNode.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardNode.querySelector('.setup-similar-label').textContent = wizard.name + ' ' + wizard.surname;
-    wizardNode.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardNode.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardNode.querySelector('.setup-similar-label').textContent = wizard.name;
+    wizardNode.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return wizardNode;
   }
@@ -128,14 +119,14 @@
   function fillForm(clickedElement, color) {
     switch (clickedElement.getAttribute('class')) {
       case 'wizard-coat':
-        inputValueCoat.value = color;
-        break;
+      inputValueCoat.value = color;
+      break;
       case 'wizard-eyes':
-        inputValueEyes.value = color;
-        break;
+      inputValueEyes.value = color;
+      break;
       case 'setup-fireball':
-        inputValueFireball.value = color;
-        break;
+      inputValueFireball.value = color;
+      break;
     }
 
   }
@@ -163,4 +154,22 @@
 
   };
 
+  /* загрузка других волшебников с сервера */
+  var onLoad = function (wizards) {
+    if(wizards !== undefined){
+      for (var i = 0; i < WIZARDS_COUNT; i++) {
+        renderWizard(wizardsFragment, wizards[window.mathUtils.getRandomValue(wizards.length - 1)]);
+      }
+      similarWizardListWindow.appendChild(wizardsFragment);
+    }
+  };
+
+  var onError = function (errorMessage) {
+   var messageDialog = document.createElement('div');
+   messageDialog.classList.add('messageError');
+   messageDialog.textContent = message;
+   document.body.insertAdjacentElement('afterbegin', messageDialog);
+ }
+
+ window.backend.load(onLoad, onError);
 })();

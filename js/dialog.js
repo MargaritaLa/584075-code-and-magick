@@ -7,6 +7,7 @@
   var setupWizardWindow = document.querySelector('.setup');
   var setupOpenWizardWindow = document.querySelector('.setup-open');
   var setupCloseWizardWindow = setupWizardWindow.querySelector('.setup-close');
+  var setupWizardForm = setupWizardWindow.querySelector('.setup-wizard-form');
 
 
   // функции обработки событий
@@ -93,6 +94,30 @@
   dialogHandle.addEventListener('click', function (evt) {
     evt.preventDefault();
   });
+
+  var onLoad = function (data) {
+   console.log(data);
+   window.closePopup();
+ };
+
+ var blockMessage = document.createElement('div');
+ blockMessage.classList.add('errorMessage');
+ document.body.appendChild(blockMessage);
+
+ var onError = function (errorMessage) {
+   var errorMessage = document.createElement('div');
+   errorMessage.classList.add('item_errorMessage');
+   errorMessage.textContent = 'message';
+   blockMessage.insertAdjacentElement('afterbegin', errorMessage);
+ }
+
+ var formSubmitHandler = function (evt) {
+  evt.preventDefault();
+  window.backend.save(new FormData(setupWizardForm), onLoad, onError);
+
+};
+
+setupWizardForm.addEventListener('submit', formSubmitHandler);
 
 })();
 
