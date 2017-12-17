@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+
   // переменные для функций изменения вида волшебника
   var intoFocusFieldWizard = document.querySelector('.setup-player');
   var changeCoatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -13,36 +14,37 @@
     var clickedElement = e.target;
 
     // оповещение о выбранном цвете и элементе
-    window.wizardElementClicked(clickedElement);
-
+    colorizeElement(clickedElement);
   }, false);
 
-  window.colorizeElement = function (clickedElement, colorizeElementFunction) {
+  var coatColor = getComputedStyle(document.querySelector('.wizard-coat')).fill;
+  var eyesColor = getComputedStyle(document.querySelector('.wizard-eyes')).fill;
+  var fireballColor = getComputedStyle(document.querySelector('.setup-fireball-wrap')).backgroundColor;
 
-    var colorsArray;
+  var colorizeElement = function (clickedElement) {
     var getClass = clickedElement.getAttribute('class');
 
     switch (getClass) {
       case 'wizard-coat':
-        colorsArray = changeCoatColors;
+        coatColor = changeCoatColors[window.mathUtils.getZeroMaxRandomValue(0, changeCoatColors.length - 1)];
         break;
       case 'wizard-eyes':
-        colorsArray = changeEyesColors;
+        eyesColor = changeEyesColors[window.mathUtils.getZeroMaxRandomValue(0, changeEyesColors.length - 1)];
         break;
       case 'setup-fireball':
-        colorsArray = changeFireballColors;
+        fireballColor = changeFireballColors[window.mathUtils.getZeroMaxRandomValue(0, changeFireballColors.length - 1)];
         break;
       default:
         return;
     }
 
-    // выбор рандомного цвета
-    var color = colorsArray[window.mathUtils.getZeroMaxRandomValue(0, colorsArray.length - 1)];
-
-    if (typeof colorizeElementFunction === 'function') {
-      colorizeElementFunction(clickedElement, color);
-    }
-
+    var event = new CustomEvent('WizardChanged', {'detail': {
+      coatColor: coatColor,
+      eyesColor: eyesColor,
+      fireballColor: fireballColor,
+      clickedElement: clickedElement,
+    }});
+    document.dispatchEvent(event);
   };
 
 })();

@@ -95,29 +95,28 @@
     evt.preventDefault();
   });
 
-  var onLoad = function (data) {
-   console.log(data);
-   window.closePopup();
- };
+  var onLoad = function () {
+    window.closePopup();
+  };
 
- var blockMessage = document.createElement('div');
- blockMessage.classList.add('errorMessage');
- document.body.appendChild(blockMessage);
+  var blockMessage = document.createElement('div');
+  blockMessage.classList.add('errorMessage');
+  document.body.appendChild(blockMessage);
 
- var onError = function (errorMessage) {
-   var errorMessage = document.createElement('div');
-   errorMessage.classList.add('item_errorMessage');
-   errorMessage.textContent = 'message';
-   blockMessage.insertAdjacentElement('afterbegin', errorMessage);
- }
+  var onError = function (error) {
+    var errorMessage = document.createElement('div');
+    errorMessage.classList.add('item_errorMessage');
+    errorMessage.textContent = error;
+    blockMessage.insertAdjacentElement('afterbegin', errorMessage);
+  };
 
- var formSubmitHandler = function (evt) {
-  evt.preventDefault();
-  window.backend.save(new FormData(setupWizardForm), onLoad, onError);
+  var formSubmitHandler = function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(setupWizardForm), onLoad, onError);
 
-};
+  };
 
-setupWizardForm.addEventListener('submit', formSubmitHandler);
+  setupWizardForm.addEventListener('submit', formSubmitHandler);
 
 })();
 

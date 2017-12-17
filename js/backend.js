@@ -11,23 +11,19 @@
       var error;
       switch (xhr.status) {
         case 200:
-        successHandler(xhr.response);
-        break;
+          successHandler(xhr.response);
+          break;
         case 400:
-        error = 'Неверный запрос';
-        console.log('Неверный запрос');
-        break;
+          error = 'Неверный запрос';
+          break;
         case 401:
-        error = 'Пользователь не авторизован';
-        console.log('Пользователь не авторизован');
-        break;
+          error = 'Пользователь не авторизован';
+          break;
         case 404:
-        error = 'Ничего не найдено';
-        console.log('Ничего не найдено');
-        break;
+          error = 'Ничего не найдено';
+          break;
         default:
-        error = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
-        console.log('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
+          error = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
       }
       if (error) {
         errorHandler(error);
